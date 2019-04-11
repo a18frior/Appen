@@ -55,7 +55,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_about) {
-
+            WebView mwebView = (WebView) findViewById(R.id.WebView_Dash);
+            WebSettings webSettings = mwebView.getSettings();
+            ((WebSettings) webSettings).setJavaScriptEnabled(true);
+            mwebView.loadUrl("file:///android_asset/about.html");
             return true;
         }
 
