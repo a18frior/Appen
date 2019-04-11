@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 public class MainActivity extends AppCompatActivity {
     // Create a private member variable that can hold our WebView
@@ -17,10 +19,14 @@ public class MainActivity extends AppCompatActivity {
         /* This code is run when the App is created. Include code that creates your WebView */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        WebView webView = (WebView) findViewById(R.id.WebView_Dash);
+        WebSettings webSettings = webView.getSettings();
+        ((WebSettings) webSettings).setJavaScriptEnabled(true);
+        webView.loadUrl("http://wwwlab.iit.his.se/a18frior/Mobilappdesign/plateapp/plateapp.html");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // The FAB-code can be removed
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,17 +35,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        // 1. Create a WebView element in the layout file content_main.xml
-        // -- Commit and push to your github fork
-        // 2. Give the WebView element created in step 1 ID "my_webview"
-        // Enter your code that creates your WebView here...
-        // -- Commit and push to your github fork
-        // 3. Locate the WebView element created in step 1 using the ID created in step 2
-        // 4. Create a new WebViewClient to attach to our WebView. This allows us to
-        //    browse the web inside our app.
-        // -- Commit and push to your github fork
-        // 5. Enter the url to load in our WebView
-        // -- Commit and push to your github fork
+
     }
 
     @Override
@@ -51,13 +47,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+        if (id == R.id.action_about) {
+            WebView mwebView = (WebView) findViewById(R.id.WebView_Dash);
+            WebSettings webSettings = mwebView.getSettings();
+            ((WebSettings) webSettings).setJavaScriptEnabled(true);
+            mwebView.loadUrl("file:///android_asset/about.html");
             return true;
         }
 
